@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import { React, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 
-function MyTimer({ expiryTimestamp }) {
+function MyTimer({ expiryTimestamp, secondsToAdd }) {
   const {
     seconds,
     minutes,
@@ -30,7 +30,7 @@ function MyTimer({ expiryTimestamp }) {
       <button onClick={() => {
         // Restarts to 5 minutes timer
         const time = new Date();
-        time.setSeconds(time.getSeconds() + 3);
+        time.setSeconds(time.getSeconds() + secondsToAdd);
         restart(time)
       }}>Restart</button>
     </div>
@@ -39,16 +39,20 @@ function MyTimer({ expiryTimestamp }) {
 
 const App = () => {
   const time = new Date();
+  const [secondsToAdd, setSecondsToAdd] = useState(0);
   time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
   return (
     <>
       <div>
-        <MyTimer expiryTimestamp={time} />
+        <MyTimer expiryTimestamp={time} secondsToAdd={secondsToAdd} />
       </div>
 
       <div class="md-form">
-        <input type="text" id="manual-operations-input" class="form-control" placeholder="Now"/>
-        <label for="form1" class ="">Check the minutes</label>
+        <input type="text" id="manual-operations-input" class="form-control" placeholder="How many seconds would you like to add lol"
+          onChange={ (e) => {
+            setSecondsToAdd(parseInt(e.target.value))
+          }}/>
+        <label for="form1" class =""></label>
       </div>
 
     </>
