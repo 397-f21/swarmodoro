@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.btn {
+    white-space:normal !important;
+    word-wrap: break-word; 
+}
+/* 
+.ReactTagInput {
+    width: 70%;
+    margin: auto;
+} */

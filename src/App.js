@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TimePicker from '@mui/lab/TimePicker';
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
 
 function MyTimer({ expiryTimestamp, secondsToAdd }) {
   const {
@@ -54,6 +56,7 @@ const App = () => {
   const time = new Date();
   const [value, setValue] = useState(new Date('2021-01-01T00:15:00.000Z'));
   const [secondsToAdd, setSecondsToAdd] = useState(900); // by default 15min
+  const [tags, setTags] = useState(["Member1"])
 
   return (
     <>
@@ -61,7 +64,7 @@ const App = () => {
         <MyTimer expiryTimestamp={time} secondsToAdd={secondsToAdd} />
       </div>
 
-      <div style={{ textAlign: 'center' }} className="mt-4">
+      <div style={{ textAlign: 'center' }} className="mt-4 mb-4">
         {/* reference: https://mui.com/components/time-picker/ */}
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
@@ -82,6 +85,19 @@ const App = () => {
           />
         </LocalizationProvider>
       </div>
+
+      {/* reference: https://betterstack.dev/projects/react-tag-input/ */}
+      <form class="form-inline">
+        <div class="form-group mb-2">
+          <ReactTagInput
+            placeholder="Type name and press enter"
+            tags={tags}
+            onChange={(newTags) => setTags(newTags)}
+          />
+        </div>
+        <button type="submit" class="btn btn-danger">Go!</button>
+      </form>
+      {/* {console.log(tags)} */}
     </>
   );
 }
