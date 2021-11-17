@@ -56,11 +56,34 @@ const toSeconds = (min, sec) => {
   return ((min * 60) + sec);
 }
 
+const shuffle_arr = (original_arr) => {
+  let arr = original_arr.slice();
+  var j, x, index;
+  for (index = arr.length - 1; index > 0; index--) {
+    j = Math.floor(Math.random() * (index + 1));
+    x = arr[index];
+    arr[index] = arr[j];
+    arr[j] = x;
+  }
+  return arr;
+}
+
+const SwarmOrder = ({ names }) => {
+  return (
+    <div className="mt-4">
+      <ol>
+        {Array.from(names).map(form => <li>{form}</li>)}
+      </ol>
+    </div>
+  );
+}
+
 const App = () => {
   const time = new Date();
   const [value, setValue] = useState(new Date('2021-01-01T00:15:00.000Z'));
   const [secondsToAdd, setSecondsToAdd] = useState(900); // by default 15min
-  const [tags, setTags] = useState(["Member1"])
+  const [tags, setTags] = useState(["Member1"]);
+  const [shuffle, setShuffle] = useState(["Member1"]);
 
   return (
     <div style={{ margin: '15px' }}>
@@ -91,7 +114,7 @@ const App = () => {
       </div>
 
       {/* reference: https://betterstack.dev/projects/react-tag-input/ */}
-      <div class="form-inline justify-content-center">
+      <div class="form-inline justify-content-center mb-4">
         <div class="form-group col-sm-8">
           <ReactTagInput
             placeholder="Type name and press enter"
@@ -99,9 +122,10 @@ const App = () => {
             onChange={(newTags) => setTags(newTags)}
           />
         </div>
-        <button type="button" class="btn btn-danger">Go!</button>
+        <button type="button" class="btn btn-danger"
+          onClick={() => setShuffle(shuffle_arr(tags))}>Go!</button>
       </div>
-      {/* {console.log(tags)} */}
+      {<SwarmOrder names={shuffle} />}
     </div>
   );
 }
