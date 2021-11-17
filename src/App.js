@@ -35,15 +35,19 @@ function MyTimer({ expiryTimestamp, secondsToAdd }) {
           const time = new Date();
           time.setSeconds(time.getSeconds() + secondsToAdd);
           restart(time)
-        }}>Start</button>
-      <button type="button" className="btn btn-warning me-2" onClick={pause}>Pause</button>
-      <button type="button" class="btn btn-info me-2" onClick={resume}>Resume</button>
+        }}>
+        <i className="fas fa-hourglass-start me-2"></i>Start</button>
+      <button type="button" className="btn btn-warning me-2" onClick={pause}>
+        <i className="fas fa-pause me-2"></i>Pause</button>
+      <button type="button" class="btn btn-info me-2" onClick={resume}>
+        <i className="fas fa-play me-2"></i>Resume</button>
       <button type="button" class="btn btn-primary"
         onClick={() => {
           const time = new Date();
           time.setSeconds(time.getSeconds() + secondsToAdd);
-          restart(time)
-        }}>Restart</button>
+          restart(time);
+        }}>
+        <i className="fas fa-redo-alt me-2"></i>Reset</button>
     </div>
   );
 }
@@ -59,7 +63,7 @@ const App = () => {
   const [tags, setTags] = useState(["Member1"])
 
   return (
-    <>
+    <div style={{ margin: '15px' }}>
       <div>
         <MyTimer expiryTimestamp={time} secondsToAdd={secondsToAdd} />
       </div>
@@ -87,18 +91,18 @@ const App = () => {
       </div>
 
       {/* reference: https://betterstack.dev/projects/react-tag-input/ */}
-      <form class="form-inline">
-        <div class="form-group mb-2">
+      <div class="form-inline justify-content-center">
+        <div class="form-group col-sm-8">
           <ReactTagInput
             placeholder="Type name and press enter"
             tags={tags}
             onChange={(newTags) => setTags(newTags)}
           />
         </div>
-        <button type="submit" class="btn btn-danger">Go!</button>
-      </form>
+        <button type="button" class="btn btn-danger">Go!</button>
+      </div>
       {/* {console.log(tags)} */}
-    </>
+    </div>
   );
 }
 
