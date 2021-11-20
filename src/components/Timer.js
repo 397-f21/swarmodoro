@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
+import { timeEndAlert } from './Alert';
 
 export const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
   const {
@@ -16,8 +17,12 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
   const [playing, setPlaying] = useState(true);
 
   const timeEnd = () => {
+    var checkEnd = startTimer;
     setStartTimer(false);
     setPlaying(true);
+    if (checkEnd) {
+      timeEndAlert();
+    }
   }
 
   return (

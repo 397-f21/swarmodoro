@@ -6,7 +6,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TimePicker from '@mui/lab/TimePicker';
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
-import { MyTimer, toSeconds, shuffleArr, SwarmOrder } from './Timer';
+import { MyTimer, toSeconds, shuffleArr, SwarmOrder } from './components/Timer';
+import { askForApproval } from './components/Alert';
 
 const App = () => {
   const time = new Date();
@@ -17,6 +18,7 @@ const App = () => {
 
   return (
     <div style={{ margin: '15px' }}>
+      {askForApproval()}
       <div>
         <MyTimer expiryTimestamp={time} secondsToAdd={secondsToAdd} />
       </div>
