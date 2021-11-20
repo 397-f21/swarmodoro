@@ -30,7 +30,7 @@ const App = () => {
             views={['minutes', 'seconds']}
             inputFormat="mm:ss"
             mask="__:__"
-            label="Minutes and seconds"
+            label="Minutes & Seconds"
             value={value}
             onChange={(newValue) => {
               setValue(newValue);
@@ -44,15 +44,15 @@ const App = () => {
       </div>
 
       {/* reference: https://betterstack.dev/projects/react-tag-input/ */}
-      <div class="form-inline justify-content-center mb-4">
-        <div class="form-group col-sm-8">
+      <div className="form-inline justify-content-center mb-4">
+        <div className="form-group col-sm-8">
           <ReactTagInput
             placeholder="Type name and press enter"
             tags={tags}
             onChange={(newTags) => setTags(newTags)}
           />
         </div>
-        <button type="button" class="btn btn-danger"
+        <button type="button" className="btn btn-danger"
           onClick={() => setShuffle(shuffleArr(tags))}>Go!</button>
       </div>
       {<SwarmOrder names={shuffle} />}

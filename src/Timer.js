@@ -10,27 +10,34 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
     pause,
     resume,
     restart,
-  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+  } = useTimer({ expiryTimestamp, onExpire: () => timeEnd() });
 
   const [startTimer, setStartTimer] = useState(false);
   const [playing, setPlaying] = useState(true);
 
+  const timeEnd = () => {
+    setStartTimer(false);
+    setPlaying(true);
+  }
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h1> Swarmodoro </h1>
-      <p>A perfect swarm timer</p>
+      <p><i>A perfect swarm timer</i></p>
       <div style={{ fontSize: '100px' }}>
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
-      <p>{isRunning ? 'Swarming...' : 'Next person!'}</p>
+      <h5 className="mt-2 mb-4">
+        {startTimer ? playing ? "Swarming..." : "Session has paused." : "Next Person!"}
+      </h5>
 
-      <button type="button" class="btn btn-primary me-2"
+      <button type="button" className="btn btn-primary me-2"
         onClick={() => {
           const time = new Date();
           time.setSeconds(time.getSeconds() + secondsToAdd);
           restart(time, false);
           setStartTimer(false);
-          setPlaying(true)
+          setPlaying(true);
         }}>
         <i className="fas fa-stopwatch me-2"></i>Set Time</button>
 
@@ -41,7 +48,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
             setPlaying(false);
           }}>
             <i className="fas fa-pause me-2"></i>Pause</button> :
-          <button type="button" class="btn btn-info me-2" onClick={() => {
+          <button type="button" className="btn btn-info me-2" onClick={() => {
             resume();
             setPlaying(true);
           }}>
