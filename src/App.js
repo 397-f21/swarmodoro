@@ -8,12 +8,10 @@ import TimePicker from '@mui/lab/TimePicker';
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 
-function MyTimer({ expiryTimestamp, secondsToAdd }) {
+const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
   const {
     seconds,
     minutes,
-    hours,
-    days,
     isRunning,
     start,
     pause,
@@ -21,33 +19,51 @@ function MyTimer({ expiryTimestamp, secondsToAdd }) {
     restart,
   } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
 
+  const [startTimer, setStartTimer] = useState(false);
+  const [playing, setPlaying] = useState(true);
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h1> Swarmodoro </h1>
       <p>A perfect swarm timer</p>
       <div style={{ fontSize: '100px' }}>
-        {/* <span>{days}</span>:<span>{hours}</span>: */}
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <p>{isRunning ? 'Swarming...' : 'Next person!'}</p>
-      <button type="button" className="btn btn-success me-2"
+
+      <button type="button" class="btn btn-primary me-2"
         onClick={() => {
           const time = new Date();
           time.setSeconds(time.getSeconds() + secondsToAdd);
-          restart(time)
+          restart(time, false);
+          setStartTimer(false);
+          setPlaying(true)
         }}>
-        <i className="fas fa-hourglass-start me-2"></i>Start</button>
-      <button type="button" className="btn btn-warning me-2" onClick={pause}>
-        <i className="fas fa-pause me-2"></i>Pause</button>
-      <button type="button" class="btn btn-info me-2" onClick={resume}>
-        <i className="fas fa-play me-2"></i>Resume</button>
-      <button type="button" class="btn btn-primary"
-        onClick={() => {
-          const time = new Date();
-          time.setSeconds(time.getSeconds() + secondsToAdd);
-          restart(time);
-        }}>
-        <i className="fas fa-redo-alt me-2"></i>Reset</button>
+        <i className="fas fa-stopwatch me-2"></i>Set Time</button>
+
+      {startTimer ?
+        playing ?
+          <button type="button" className="btn btn-warning me-2" onClick={() => {
+            pause();
+            setPlaying(false);
+          }}>
+            <i className="fas fa-pause me-2"></i>Pause</button> :
+          <button type="button" class="btn btn-info me-2" onClick={() => {
+            resume();
+            setPlaying(true);
+          }}>
+            <i className="fas fa-play me-2"></i>Resume</button>
+        :
+        <button type="button" className="btn btn-success me-2"
+          onClick={() => {
+            const time = new Date();
+            time.setSeconds(time.getSeconds() + secondsToAdd);
+            restart(time);
+            setStartTimer(true);
+          }}>
+          <i className="fas fa-hourglass-start me-2"></i>Start</button>}
+
+
     </div>
   );
 }
