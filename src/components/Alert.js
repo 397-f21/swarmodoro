@@ -7,11 +7,13 @@ const playSound = () => {
   alarmAudio.play();
 }
 
-// reference: https://www.studytonight.com/post/javascript-desktopbrowser-push-notification-example
 export const askForApproval = () => {
-  Notification.requestPermission();
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+  }
 }
 
+// reference: https://www.studytonight.com/post/javascript-desktopbrowser-push-notification-example
 export const timeEndAlert = () => {
   if (Notification.permission === "granted") {
     playSound();
