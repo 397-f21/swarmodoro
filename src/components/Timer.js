@@ -2,7 +2,9 @@ import { React, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 import { timeEndAlert } from './Alert';
 
-export const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
+let memberIndex = 0;
+
+export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
   const {
     seconds,
     minutes,
@@ -21,6 +23,8 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
     setStartTimer(false);
     setPlaying(true);
     if (checkEnd) {
+      memberIndex = (memberIndex+1)%members.length;
+      console.log(memberIndex);
       timeEndAlert();
     }
   }
@@ -33,7 +37,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd }) => {
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <h5 className="mt-2 mb-4">
-        {startTimer ? playing ? "Swarming..." : "Session has paused." : "Next Person!"}
+        {startTimer ? playing ? members[memberIndex] + " is typing." : members[memberIndex] + "'s session is paused." : "Next typist: " + members[memberIndex]}
       </h5>
 
       <button type="button" className="btn btn-primary me-2"

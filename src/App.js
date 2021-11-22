@@ -26,7 +26,7 @@ const App = () => {
     <div style={{ margin: '15px' }}>
       {askForApproval()}
       <div>
-        <MyTimer expiryTimestamp={time} secondsToAdd={secondsToAdd} />
+        <MyTimer expiryTimestamp={time} secondsToAdd={secondsToAdd} members={shuffle} />
       </div>
 
       <div style={{ textAlign: 'center' }} className="mt-4 mb-4">
