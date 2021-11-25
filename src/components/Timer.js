@@ -29,12 +29,17 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
     }
   }
 
+  let secDisplay = String(seconds);
+  if (secDisplay.length < 2) {
+    secDisplay += "0";
+  }
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h1> Swarmodoro </h1>
       <p><i>A perfect swarm timer</i></p>
-      <div style={{ fontSize: '100px' }}>
-        <span>{minutes}</span>:<span>{seconds}</span>
+      <div data-cy="timeDisplayCy" style={{ fontSize: '100px' }}>
+        <span>{minutes}</span>:<span>{secDisplay}</span>
       </div>
       <h5 className="mt-2 mb-4">
         {startTimer ? playing ? members[memberIndex] + " is typing." : members[memberIndex] + "'s session is paused." : "Next typist: " + members[memberIndex]}
@@ -48,7 +53,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
           setStartTimer(false);
           setPlaying(true);
         }}>
-        <i className="fas fa-stopwatch me-2"></i>Set Time</button>
+        <i data-cy="setButtonCy" className="fas fa-stopwatch me-2"></i>Set Time</button>
 
       {startTimer ?
         playing ?
@@ -70,7 +75,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
             restart(time);
             setStartTimer(true);
           }}>
-          <i className="fas fa-hourglass-start me-2"></i>Start</button>}
+          <i className="fas fa-hourglass-start me-2" data-cy="startButtonCy"></i>Start</button>}
 
     </div>
   );

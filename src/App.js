@@ -46,7 +46,7 @@ const App = () => {
               var sec = newValue.getSeconds();
               setSecondsToAdd(toSeconds(min, sec));
             }}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => <TextField data-cy="timeFieldCy" {...params} />}
           />
         </LocalizationProvider>
       </div>
