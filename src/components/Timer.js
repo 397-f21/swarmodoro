@@ -31,7 +31,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
 
   let secDisplay = String(seconds);
   if (secDisplay.length < 2) {
-    secDisplay += "0";
+    secDisplay = "0" + secDisplay;
   }
 
   return (

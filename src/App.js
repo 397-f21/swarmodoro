@@ -41,10 +41,14 @@ const App = () => {
             label="Minutes & Seconds"
             value={value}
             onChange={(newValue) => {
-              setValue(newValue);
-              var min = newValue.getMinutes();
-              var sec = newValue.getSeconds();
-              setSecondsToAdd(toSeconds(min, sec));
+              if (!newValue)
+                setValue("")
+              else {
+                setValue(newValue);
+                var min = newValue.getMinutes();
+                var sec = newValue.getSeconds();
+                setSecondsToAdd(toSeconds(min, sec));
+              }
             }}
             renderInput={(params) => <TextField data-cy="timeFieldCy" {...params} />}
           />
