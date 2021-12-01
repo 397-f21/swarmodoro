@@ -1,10 +1,16 @@
 // sound imported from: https://material.io/design/sound/sound-resources.html#
 import alertSound from "./ringtone_minimal.wav";
 
+const alarmAudio = new Audio(alertSound);
+
 // reference: https://betterprogramming.pub/add-sound-to-a-react-ui-c58e33e0a96c
 const playSound = () => {
-  const alarmAudio = new Audio(alertSound);
+  alarmAudio.load();
   alarmAudio.play();
+}
+
+export const pauseSound = () => {
+  alarmAudio.pause();
 }
 
 export const askForApproval = () => {

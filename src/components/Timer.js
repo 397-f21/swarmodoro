@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
-import { timeEndAlert } from './Alert';
+import { timeEndAlert, pauseSound } from './Alert';
+import Modal from "react-bootstrap/Modal";
 
 let memberIndex = 0;
 
@@ -18,6 +19,10 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
   const [startTimer, setStartTimer] = useState(false);
   const [playing, setPlaying] = useState(true);
 
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
   const timeEnd = () => {
     var checkEnd = startTimer;
     setStartTimer(false);
@@ -26,6 +31,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
       memberIndex = (memberIndex+1)%members.length;
       console.log(memberIndex);
       timeEndAlert();
+      setShow2(true);
     }
   }
 
@@ -35,6 +41,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
   }
 
   return (
+    <>
     <div style={{ textAlign: 'center' }}>
       <h1> Swarmodoro </h1>
       <p><i>A perfect swarm timer</i></p>
@@ -78,6 +85,18 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
           <i className="fas fa-hourglass-start me-2" data-cy="startButtonCy"></i>Start</button>}
 
     </div>
+    <Modal data-cy="loginModalCy" show={show2} onHide={handleClose2}>
+        <Modal.Header>
+          <Modal.Title>Timer</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Time's Up!</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="btn btn-primary" type='submit' onClick={() => {pauseSound(); handleClose2();}}>End Timer</button>
+        </Modal.Footer>
+      </Modal>
+  </>
   );
 }
 
