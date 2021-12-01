@@ -48,9 +48,9 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
       <div data-cy="timeDisplayCy" style={{ fontSize: '100px' }}>
         <span>{minutes}</span>:<span>{secDisplay}</span>
       </div>
-      <h5 className="mt-2 mb-4">
+      <h1 className="mt-2 mb-4">
         {startTimer ? playing ? members[memberIndex] + " is typing." : members[memberIndex] + "'s session is paused." : "Next typist: " + members[memberIndex]}
-      </h5>
+      </h1>
 
       <button type="button" className="btn btn-primary me-2"
         onClick={() => {
@@ -118,10 +118,8 @@ export const shuffleArr = (original_arr) => {
 
 export const SwarmOrder = ({ names }) => {
   return (
-    <div className="mt-4">
-      <ol>
-        {Array.from(names).map(form => <li>{form}</li>)}
-      </ol>
-    </div>
+    <h4>
+        {Array.from(names).map((form, ind) => <div>{ind+1}.  {form}</div>)}
+    </h4>
   );
 } 

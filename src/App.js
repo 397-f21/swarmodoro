@@ -55,8 +55,13 @@ const App = () => {
         </LocalizationProvider>
       </div>
 
+      <div style={{ textAlign: 'center' }}>
+      <h3>Swarm Order:</h3>
+      {<SwarmOrder names={shuffle} />}
+      </div>
+
       {/* reference: https://betterstack.dev/projects/react-tag-input/ */}
-      <div className="form-inline justify-content-center mb-4">
+      <div className="form-inline justify-content-center mt-4">
         <div className="form-group col-sm-8">
           <ReactTagInput
             placeholder="Type name and press enter"
@@ -67,7 +72,6 @@ const App = () => {
         <button type="button" className="btn btn-danger"
           onClick={() => setShuffle(shuffleArr(tags))}>Go!</button>
       </div>
-      {<SwarmOrder names={shuffle} />}
 
       {/* reference: https://www.npmjs.com/package/react-floating-action-button */}
       <Container>
