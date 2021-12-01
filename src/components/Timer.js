@@ -87,7 +87,7 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
     </div>
     <Modal data-cy="loginModalCy" show={show2} onHide={handleClose2}>
         <Modal.Header>
-          <Modal.Title>Timer</Modal.Title>
+          <Modal.Title>Alert</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>Time's Up!</p>
