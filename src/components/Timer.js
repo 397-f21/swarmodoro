@@ -44,12 +44,14 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
     <>
     <div style={{ textAlign: 'center' }}>
       <h1> Swarmodoro </h1>
-      <p><i>A perfect swarm timer</i></p>
+      <h3 style={{ color: 'red' }}><i>The perfect swarm timer</i></h3>
       <div data-cy="timeDisplayCy" style={{ fontSize: '100px' }}>
         <span>{minutes}</span>:<span>{secDisplay}</span>
       </div>
-      <h1 className="mt-2 mb-4">
-        {startTimer ? playing ? members[memberIndex] + " is typing." : members[memberIndex] + "'s session is paused." : "Next typist: " + members[memberIndex]}
+      <h1 className="mt-2 mb-4"> 
+        <b>
+          {startTimer ? playing ? members[memberIndex] + " is typing." : members[memberIndex] + "'s session is paused." : "Next typist: " + members[memberIndex]}
+        </b>
       </h1>
 
       <button type="button" className="btn btn-primary me-2"

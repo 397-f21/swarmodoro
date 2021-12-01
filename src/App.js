@@ -23,7 +23,7 @@ const App = () => {
   const handleShow1 = () => setShow1(true);
 
   return (
-    <div style={{ margin: '15px' }}>
+    <div>
       {askForApproval()}
       <div>
         <MyTimer expiryTimestamp={time} secondsToAdd={secondsToAdd} members={shuffle} />
