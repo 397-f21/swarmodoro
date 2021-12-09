@@ -66,18 +66,18 @@ export const MyTimer = ({ expiryTimestamp, secondsToAdd, members }) => {
 
       {startTimer ?
         playing ?
-          <button type="button" className="btn btn-warning me-2" onClick={() => {
+          <button type="button" data-cy="pauseBtn-cy" className="btn btn-warning me-2" onClick={() => {
             pause();
             setPlaying(false);
           }}>
             <i className="fas fa-pause me-2"></i>Pause</button> :
-          <button type="button" className="btn btn-info me-2" onClick={() => {
+          <button type="button" data-cy="resumeBtn-cy" className="btn btn-info me-2" onClick={() => {
             resume();
             setPlaying(true);
           }}>
             <i className="fas fa-play me-2"></i>Resume</button>
         :
-        <button type="button" className="btn btn-success me-2"
+        <button type="button" data-cy="startBtn-cy" className="btn btn-success me-2"
           onClick={() => {
             const time = new Date();
             time.setSeconds(time.getSeconds() + secondsToAdd);

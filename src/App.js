@@ -62,14 +62,14 @@ const App = () => {
 
       {/* reference: https://betterstack.dev/projects/react-tag-input/ */}
       <div className="form-inline justify-content-center mt-4">
-        <div className="form-group col-sm-8" data-cy="nameBar-cy">
+        <div className="form-group col-sm-8">
           <ReactTagInput
             placeholder="Type name and press enter"
             tags={tags}
             onChange={(newTags) => setTags(newTags)}
           />
         </div>
-        <button type="button" className="btn btn-danger" data-cy="goButton-cy"
+        <button type="button" className="btn btn-danger"
           onClick={() => setShuffle(shuffleArr(tags))}>Go!</button>
       </div>
 
